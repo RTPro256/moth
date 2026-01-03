@@ -1,0 +1,78 @@
+From 7be8cab48d1b01fd4d622d423913d48251853406 Mon Sep 17 00:00:00 2001
+From: RyanT <ryant.pro256@outlook.com>
+Date: Sat, 3 Jan 2026 10:10:13 -0500
+Subject: [PATCH] chore(deps): unify JUnit to 5.11.4 by importing junit-bom and
+ remove explicit junit-jupiter-engine 5.9.2
+
+---
+ moth-main/pom.xml | 58 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 moth-main/pom.xml
+
+diff --git a/moth-main/pom.xml b/moth-main/pom.xml
+new file mode 100644
+index 0000000..b2d028d
+--- /dev/null
++++ b/moth-main/pom.xml
+@@ -0,0 +1,58 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++    <groupId>edu.sjsu.moth</groupId>
++    <artifactId>moth</artifactId>
++    <packaging>pom</packaging>
++    <version>1.0-SNAPSHOT</version>
++    <name>moth</name>
++    <url>https://maven.apache.org</url>
++    <dependencyManagement>
++        <dependencies>
++            <dependency>
++                <groupId>org.junit</groupId>
++                <artifactId>junit-bom</artifactId>
++                <version>5.11.4</version>
++                <type>pom</type>
++                <scope>import</scope>
++            </dependency>
++        </dependencies>
++    </dependencyManagement>
++
++    <dependencies>
++    </dependencies>
++
++    <properties>
++        <maven.compiler.release>25</maven.compiler.release>
++        <maven.compiler.source>25</maven.compiler.source>
++        <maven.compiler.target>25</maven.compiler.target>
++        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
++        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
++    </properties>
++
++    <build>
++        <pluginManagement>
++            <plugins>
++                <plugin>
++                    <groupId>org.apache.maven.plugins</groupId>
++                    <artifactId>maven-compiler-plugin</artifactId>
++                    <version>3.11.0</version>
++                    <configuration>
++                        <release>${maven.compiler.release}</release>
++                        <compilerArgs>
++                            <arg>-parameters</arg>
++                        </compilerArgs>
++                    </configuration>
++                </plugin>
++            </plugins>
++        </pluginManagement>
++    </build>
++
++    <modules>
++        <module>server</module>
++        <module>client</module>
++        <module>util</module>
++    </modules>
++
++</project>
+-- 
+2.52.0.windows.1
+
